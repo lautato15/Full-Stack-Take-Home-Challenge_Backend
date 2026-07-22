@@ -1,0 +1,17 @@
+version: '3.8'
+services:
+  db:
+    image: postgres:15
+    container_name: notifications-postgres
+    environment:
+      POSTGRES_USER: superadmin
+      POSTGRES_PASSWORD: 4321
+      POSTGRES_DB: notifications_sql
+    ports:
+      - '5499:5432'
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    restart: unless-stopped
+
+volumes:
+  db_data: {}

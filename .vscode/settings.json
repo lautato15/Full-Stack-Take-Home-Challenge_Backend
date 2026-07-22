@@ -1,0 +1,6 @@
+{
+  "material-icon-theme.activeIconPack": "nest",
+  "github.copilot.enable": {
+    "*": false
+  }
+}
