@@ -4,12 +4,12 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { Public } from 'src/auth/decorators/public-routes.decorator';
 
-@Controller()
+@Controller('user')
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
   @Public()
-  @Post('register')
+  @Post('/register')
   create(@Body() createUserDto: CreateUserDto) {
     return this.usersService.registerUser(createUserDto);
   }

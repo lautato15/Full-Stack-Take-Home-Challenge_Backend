@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { CreateNotificationDto } from './dto/create-notification.dto';
 import { UpdateNotificationDto } from './dto/update-notification.dto';
 import { PrismaService } from 'src/prisma.service';
@@ -28,24 +28,72 @@ export class NotificationsService {
           msg: 'Notificacion creada con exito',
           notification: notification,
         };
+      throw new UnauthorizedException('Credenciales incorrectas');
     }
-
-    return 'This action adds a new notification';
   }
 
-  findAll() {
-    return `This action returns all notifications`;
+  async findAllNotifications(sub: number) {
+    const notifications = await this.prisma.notifications.findMany({
+      where: { authorId: sub },
+    });
+    if (notifications.length < 1) return { msg: 'No tiene notificaciones' };
+    return { msg: 'Sus Notificaciones son:', notifications: notifications };
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} notification`;
+  async findOneNotification(idNotification: number, sub: number) {
+    const notification = await this.prisma.notifications.findUnique({
+      where: {
+        authorId: sub,
+        id: idNotification,
+      },
+    });
+    if (!notification) return { msg: 'No se encuentra dicha notificacion' };
+    return notification;
   }
 
-  update(id: number, updateNotificationDto: UpdateNotificationDto) {
-    return `This action updates a #${id} notification`;
+  async updateNotification(
+    idNotification: number,
+    updateNotificationDto: UpdateNotificationDto,
+    sub,
+  ) {
+    const notification = await this.prisma.notifications.findUnique({
+      where: {
+        authorId: sub,
+        id: idNotification,
+      },
+    });
+    if (!notification)
+      throw new UnauthorizedException('No se encontro la notificacion');
+
+    const updateNotification = await this.prisma.notifications.update({
+      where: { authorId: sub, id: idNotification },
+      data: {
+        title: updateNotificationDto.title,
+        content: updateNotificationDto.content,
+        channel: updateNotificationDto.channel,
+      },
+    });
+    if (!updateNotification)
+      throw new UnauthorizedException('No se pudo actualizar la Notificacion');
+    return updateNotification;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} notification`;
+  async removeNotification(idNotification: number, sub: number) {
+    const notification = await this.prisma.notifications.findUnique({
+      where: {
+        authorId: sub,
+        id: idNotification,
+      },
+    });
+    if (!notification)
+      throw new UnauthorizedException('No se encontro la notificacion');
+    const deleteNotification = await this.prisma.notifications.delete({
+      where: {
+        authorId: sub,
+        id: idNotification,
+      },
+    });
+    console.log(deleteNotification);
+    if (deleteNotification) return 'Notificacion eliminada';
   }
 }

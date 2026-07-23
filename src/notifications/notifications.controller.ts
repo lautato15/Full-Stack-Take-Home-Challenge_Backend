@@ -18,29 +18,32 @@ export class NotificationsController {
       sub,
     );
   }
-  // getNotifications(@CurrentUser() user: object): string {
-  //     return this.appService.getNotifications();
-  //   }
+
   @Get()
-  findAll() {
-    return this.notificationsService.findAll();
+  findAllNotifications(@CurrentUser() sub: number) {
+    return this.notificationsService.findAllNotifications(sub);
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.notificationsService.findOne(+id);
+  findOneNotification(@Param('id') id: string, @CurrentUser() sub: number) {
+    return this.notificationsService.findOneNotification(+id, sub);
   }
 
   @Patch(':id')
-  update(
+  updateNotification(
     @Param('id') id: string,
     @Body() updateNotificationDto: UpdateNotificationDto,
+    @CurrentUser() sub: number,
   ) {
-    return this.notificationsService.update(+id, updateNotificationDto);
+    return this.notificationsService.updateNotification(
+      +id,
+      updateNotificationDto,
+      sub,
+    );
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.notificationsService.remove(+id);
+  removeNotification(@Param('id') id: string, @CurrentUser() sub: number) {
+    return this.notificationsService.removeNotification(+id, sub);
   }
 }

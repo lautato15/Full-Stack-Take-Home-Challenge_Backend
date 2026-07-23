@@ -25,6 +25,7 @@ export class UsersService {
   }
 
   findOne(id: number) {
+    console.log('Aca??');
     return `This action returns a #${id} user`;
   }
 
