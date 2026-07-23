@@ -40,7 +40,7 @@ export type NotificationsMinAggregateOutputType = {
   id: number | null
   title: string | null
   content: string | null
-  canal: string | null
+  channel: string | null
   authorId: number | null
   createdAt: Date | null
   updatedAt: Date | null
@@ -50,7 +50,7 @@ export type NotificationsMaxAggregateOutputType = {
   id: number | null
   title: string | null
   content: string | null
-  canal: string | null
+  channel: string | null
   authorId: number | null
   createdAt: Date | null
   updatedAt: Date | null
@@ -60,7 +60,7 @@ export type NotificationsCountAggregateOutputType = {
   id: number
   title: number
   content: number
-  canal: number
+  channel: number
   authorId: number
   createdAt: number
   updatedAt: number
@@ -82,7 +82,7 @@ export type NotificationsMinAggregateInputType = {
   id?: true
   title?: true
   content?: true
-  canal?: true
+  channel?: true
   authorId?: true
   createdAt?: true
   updatedAt?: true
@@ -92,7 +92,7 @@ export type NotificationsMaxAggregateInputType = {
   id?: true
   title?: true
   content?: true
-  canal?: true
+  channel?: true
   authorId?: true
   createdAt?: true
   updatedAt?: true
@@ -102,7 +102,7 @@ export type NotificationsCountAggregateInputType = {
   id?: true
   title?: true
   content?: true
-  canal?: true
+  channel?: true
   authorId?: true
   createdAt?: true
   updatedAt?: true
@@ -199,7 +199,7 @@ export type NotificationsGroupByOutputType = {
   id: number
   title: string
   content: string
-  canal: string
+  channel: string
   authorId: number | null
   createdAt: Date
   updatedAt: Date
@@ -232,7 +232,7 @@ export type NotificationsWhereInput = {
   id?: Prisma.IntFilter<"Notifications"> | number
   title?: Prisma.StringFilter<"Notifications"> | string
   content?: Prisma.StringFilter<"Notifications"> | string
-  canal?: Prisma.StringFilter<"Notifications"> | string
+  channel?: Prisma.StringFilter<"Notifications"> | string
   authorId?: Prisma.IntNullableFilter<"Notifications"> | number | null
   createdAt?: Prisma.DateTimeFilter<"Notifications"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Notifications"> | Date | string
@@ -243,7 +243,7 @@ export type NotificationsOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   title?: Prisma.SortOrder
   content?: Prisma.SortOrder
-  canal?: Prisma.SortOrder
+  channel?: Prisma.SortOrder
   authorId?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -257,7 +257,7 @@ export type NotificationsWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.NotificationsWhereInput | Prisma.NotificationsWhereInput[]
   title?: Prisma.StringFilter<"Notifications"> | string
   content?: Prisma.StringFilter<"Notifications"> | string
-  canal?: Prisma.StringFilter<"Notifications"> | string
+  channel?: Prisma.StringFilter<"Notifications"> | string
   authorId?: Prisma.IntNullableFilter<"Notifications"> | number | null
   createdAt?: Prisma.DateTimeFilter<"Notifications"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Notifications"> | Date | string
@@ -268,7 +268,7 @@ export type NotificationsOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   title?: Prisma.SortOrder
   content?: Prisma.SortOrder
-  canal?: Prisma.SortOrder
+  channel?: Prisma.SortOrder
   authorId?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -286,7 +286,7 @@ export type NotificationsScalarWhereWithAggregatesInput = {
   id?: Prisma.IntWithAggregatesFilter<"Notifications"> | number
   title?: Prisma.StringWithAggregatesFilter<"Notifications"> | string
   content?: Prisma.StringWithAggregatesFilter<"Notifications"> | string
-  canal?: Prisma.StringWithAggregatesFilter<"Notifications"> | string
+  channel?: Prisma.StringWithAggregatesFilter<"Notifications"> | string
   authorId?: Prisma.IntNullableWithAggregatesFilter<"Notifications"> | number | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Notifications"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Notifications"> | Date | string
@@ -295,7 +295,7 @@ export type NotificationsScalarWhereWithAggregatesInput = {
 export type NotificationsCreateInput = {
   title: string
   content: string
-  canal: string
+  channel: string
   createdAt?: Date | string
   updatedAt?: Date | string
   author?: Prisma.UsersCreateNestedOneWithoutNotificationsInput
@@ -305,7 +305,7 @@ export type NotificationsUncheckedCreateInput = {
   id?: number
   title: string
   content: string
-  canal: string
+  channel: string
   authorId?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -314,7 +314,7 @@ export type NotificationsUncheckedCreateInput = {
 export type NotificationsUpdateInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   content?: Prisma.StringFieldUpdateOperationsInput | string
-  canal?: Prisma.StringFieldUpdateOperationsInput | string
+  channel?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   author?: Prisma.UsersUpdateOneWithoutNotificationsNestedInput
@@ -324,7 +324,7 @@ export type NotificationsUncheckedUpdateInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   title?: Prisma.StringFieldUpdateOperationsInput | string
   content?: Prisma.StringFieldUpdateOperationsInput | string
-  canal?: Prisma.StringFieldUpdateOperationsInput | string
+  channel?: Prisma.StringFieldUpdateOperationsInput | string
   authorId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -334,7 +334,7 @@ export type NotificationsCreateManyInput = {
   id?: number
   title: string
   content: string
-  canal: string
+  channel: string
   authorId?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -343,7 +343,7 @@ export type NotificationsCreateManyInput = {
 export type NotificationsUpdateManyMutationInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   content?: Prisma.StringFieldUpdateOperationsInput | string
-  canal?: Prisma.StringFieldUpdateOperationsInput | string
+  channel?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -352,7 +352,7 @@ export type NotificationsUncheckedUpdateManyInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   title?: Prisma.StringFieldUpdateOperationsInput | string
   content?: Prisma.StringFieldUpdateOperationsInput | string
-  canal?: Prisma.StringFieldUpdateOperationsInput | string
+  channel?: Prisma.StringFieldUpdateOperationsInput | string
   authorId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -362,7 +362,7 @@ export type NotificationsCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   title?: Prisma.SortOrder
   content?: Prisma.SortOrder
-  canal?: Prisma.SortOrder
+  channel?: Prisma.SortOrder
   authorId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -377,7 +377,7 @@ export type NotificationsMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   title?: Prisma.SortOrder
   content?: Prisma.SortOrder
-  canal?: Prisma.SortOrder
+  channel?: Prisma.SortOrder
   authorId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -387,7 +387,7 @@ export type NotificationsMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   title?: Prisma.SortOrder
   content?: Prisma.SortOrder
-  canal?: Prisma.SortOrder
+  channel?: Prisma.SortOrder
   authorId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -477,7 +477,7 @@ export type NotificationsUncheckedUpdateManyWithoutAuthorNestedInput = {
 export type NotificationsCreateWithoutAuthorInput = {
   title: string
   content: string
-  canal: string
+  channel: string
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -486,7 +486,7 @@ export type NotificationsUncheckedCreateWithoutAuthorInput = {
   id?: number
   title: string
   content: string
-  canal: string
+  channel: string
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -524,7 +524,7 @@ export type NotificationsScalarWhereInput = {
   id?: Prisma.IntFilter<"Notifications"> | number
   title?: Prisma.StringFilter<"Notifications"> | string
   content?: Prisma.StringFilter<"Notifications"> | string
-  canal?: Prisma.StringFilter<"Notifications"> | string
+  channel?: Prisma.StringFilter<"Notifications"> | string
   authorId?: Prisma.IntNullableFilter<"Notifications"> | number | null
   createdAt?: Prisma.DateTimeFilter<"Notifications"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Notifications"> | Date | string
@@ -534,7 +534,7 @@ export type NotificationsCreateManyAuthorInput = {
   id?: number
   title: string
   content: string
-  canal: string
+  channel: string
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -542,7 +542,7 @@ export type NotificationsCreateManyAuthorInput = {
 export type NotificationsUpdateWithoutAuthorInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   content?: Prisma.StringFieldUpdateOperationsInput | string
-  canal?: Prisma.StringFieldUpdateOperationsInput | string
+  channel?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -551,7 +551,7 @@ export type NotificationsUncheckedUpdateWithoutAuthorInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   title?: Prisma.StringFieldUpdateOperationsInput | string
   content?: Prisma.StringFieldUpdateOperationsInput | string
-  canal?: Prisma.StringFieldUpdateOperationsInput | string
+  channel?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -560,7 +560,7 @@ export type NotificationsUncheckedUpdateManyWithoutAuthorInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   title?: Prisma.StringFieldUpdateOperationsInput | string
   content?: Prisma.StringFieldUpdateOperationsInput | string
-  canal?: Prisma.StringFieldUpdateOperationsInput | string
+  channel?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -571,7 +571,7 @@ export type NotificationsSelect<ExtArgs extends runtime.Types.Extensions.Interna
   id?: boolean
   title?: boolean
   content?: boolean
-  canal?: boolean
+  channel?: boolean
   authorId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
@@ -582,7 +582,7 @@ export type NotificationsSelectCreateManyAndReturn<ExtArgs extends runtime.Types
   id?: boolean
   title?: boolean
   content?: boolean
-  canal?: boolean
+  channel?: boolean
   authorId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
@@ -593,7 +593,7 @@ export type NotificationsSelectUpdateManyAndReturn<ExtArgs extends runtime.Types
   id?: boolean
   title?: boolean
   content?: boolean
-  canal?: boolean
+  channel?: boolean
   authorId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
@@ -604,13 +604,13 @@ export type NotificationsSelectScalar = {
   id?: boolean
   title?: boolean
   content?: boolean
-  canal?: boolean
+  channel?: boolean
   authorId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type NotificationsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "content" | "canal" | "authorId" | "createdAt" | "updatedAt", ExtArgs["result"]["notifications"]>
+export type NotificationsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "content" | "channel" | "authorId" | "createdAt" | "updatedAt", ExtArgs["result"]["notifications"]>
 export type NotificationsInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   author?: boolean | Prisma.Notifications$authorArgs<ExtArgs>
 }
@@ -630,7 +630,7 @@ export type $NotificationsPayload<ExtArgs extends runtime.Types.Extensions.Inter
     id: number
     title: string
     content: string
-    canal: string
+    channel: string
     authorId: number | null
     createdAt: Date
     updatedAt: Date
@@ -1061,7 +1061,7 @@ export interface NotificationsFieldRefs {
   readonly id: Prisma.FieldRef<"Notifications", 'Int'>
   readonly title: Prisma.FieldRef<"Notifications", 'String'>
   readonly content: Prisma.FieldRef<"Notifications", 'String'>
-  readonly canal: Prisma.FieldRef<"Notifications", 'String'>
+  readonly channel: Prisma.FieldRef<"Notifications", 'String'>
   readonly authorId: Prisma.FieldRef<"Notifications", 'Int'>
   readonly createdAt: Prisma.FieldRef<"Notifications", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Notifications", 'DateTime'>

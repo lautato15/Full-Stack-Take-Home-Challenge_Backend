@@ -1,10 +1,35 @@
 import { Injectable } from '@nestjs/common';
 import { CreateNotificationDto } from './dto/create-notification.dto';
 import { UpdateNotificationDto } from './dto/update-notification.dto';
+import { PrismaService } from 'src/prisma.service';
 
 @Injectable()
 export class NotificationsService {
-  create(createNotificationDto: CreateNotificationDto) {
+  constructor(private prisma: PrismaService) {}
+  async createNotification(
+    createNotificationDto: CreateNotificationDto,
+    sub: number,
+  ) {
+    if (
+      createNotificationDto.title &&
+      createNotificationDto.content &&
+      createNotificationDto.channel
+    ) {
+      const notification = await this.prisma.notifications.create({
+        data: {
+          title: createNotificationDto.title,
+          content: createNotificationDto.content,
+          channel: createNotificationDto.channel,
+          authorId: sub,
+        },
+      });
+      if (notification)
+        return {
+          msg: 'Notificacion creada con exito',
+          notification: notification,
+        };
+    }
+
     return 'This action adds a new notification';
   }
 

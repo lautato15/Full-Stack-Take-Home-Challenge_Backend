@@ -609,7 +609,7 @@ export const NotificationsScalarFieldEnum = {
   id: 'id',
   title: 'title',
   content: 'content',
-  canal: 'canal',
+  channel: 'channel',
   authorId: 'authorId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'

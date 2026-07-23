@@ -8,9 +8,8 @@ import {
 } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { LoginDto } from './dto/login.dto';
-import { Public } from './public-routes.decorator';
-import { AuthGuard } from '@nestjs/passport';
-import { LocalAuthGuard } from './local-auth.guard';
+import { Public } from './decorators/public-routes.decorator';
+import { LocalAuthGuard } from './guards/local-auth.guard';
 
 @Controller('auth')
 export class AuthController {
@@ -20,6 +19,7 @@ export class AuthController {
   @Post()
   async login(@Request() req: LoginDto) {
     console.log('4 - AuthController');
-    return this.authService.login(req.body);
+    console.log(req.user);
+    return this.authService.login(req.user);
   }
 }
