@@ -236,7 +236,7 @@ export type NotificationsWhereInput = {
   authorId?: Prisma.IntNullableFilter<"Notifications"> | number | null
   createdAt?: Prisma.DateTimeFilter<"Notifications"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Notifications"> | Date | string
-  author?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
+  author?: Prisma.XOR<Prisma.UsersNullableScalarRelationFilter, Prisma.UsersWhereInput> | null
 }
 
 export type NotificationsOrderByWithRelationInput = {
@@ -247,7 +247,7 @@ export type NotificationsOrderByWithRelationInput = {
   authorId?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  author?: Prisma.UserOrderByWithRelationInput
+  author?: Prisma.UsersOrderByWithRelationInput
 }
 
 export type NotificationsWhereUniqueInput = Prisma.AtLeast<{
@@ -261,7 +261,7 @@ export type NotificationsWhereUniqueInput = Prisma.AtLeast<{
   authorId?: Prisma.IntNullableFilter<"Notifications"> | number | null
   createdAt?: Prisma.DateTimeFilter<"Notifications"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Notifications"> | Date | string
-  author?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
+  author?: Prisma.XOR<Prisma.UsersNullableScalarRelationFilter, Prisma.UsersWhereInput> | null
 }, "id">
 
 export type NotificationsOrderByWithAggregationInput = {
@@ -298,7 +298,7 @@ export type NotificationsCreateInput = {
   canal: string
   createdAt?: Date | string
   updatedAt?: Date | string
-  author?: Prisma.UserCreateNestedOneWithoutPostsInput
+  author?: Prisma.UsersCreateNestedOneWithoutNotificationsInput
 }
 
 export type NotificationsUncheckedCreateInput = {
@@ -317,7 +317,7 @@ export type NotificationsUpdateInput = {
   canal?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  author?: Prisma.UserUpdateOneWithoutPostsNestedInput
+  author?: Prisma.UsersUpdateOneWithoutNotificationsNestedInput
 }
 
 export type NotificationsUncheckedUpdateInput = {
@@ -356,16 +356,6 @@ export type NotificationsUncheckedUpdateManyInput = {
   authorId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-}
-
-export type NotificationsListRelationFilter = {
-  every?: Prisma.NotificationsWhereInput
-  some?: Prisma.NotificationsWhereInput
-  none?: Prisma.NotificationsWhereInput
-}
-
-export type NotificationsOrderByRelationAggregateInput = {
-  _count?: Prisma.SortOrder
 }
 
 export type NotificationsCountOrderByAggregateInput = {
@@ -408,6 +398,40 @@ export type NotificationsSumOrderByAggregateInput = {
   authorId?: Prisma.SortOrder
 }
 
+export type NotificationsListRelationFilter = {
+  every?: Prisma.NotificationsWhereInput
+  some?: Prisma.NotificationsWhereInput
+  none?: Prisma.NotificationsWhereInput
+}
+
+export type NotificationsOrderByRelationAggregateInput = {
+  _count?: Prisma.SortOrder
+}
+
+export type StringFieldUpdateOperationsInput = {
+  set?: string
+}
+
+export type DateTimeFieldUpdateOperationsInput = {
+  set?: Date | string
+}
+
+export type IntFieldUpdateOperationsInput = {
+  set?: number
+  increment?: number
+  decrement?: number
+  multiply?: number
+  divide?: number
+}
+
+export type NullableIntFieldUpdateOperationsInput = {
+  set?: number | null
+  increment?: number
+  decrement?: number
+  multiply?: number
+  divide?: number
+}
+
 export type NotificationsCreateNestedManyWithoutAuthorInput = {
   create?: Prisma.XOR<Prisma.NotificationsCreateWithoutAuthorInput, Prisma.NotificationsUncheckedCreateWithoutAuthorInput> | Prisma.NotificationsCreateWithoutAuthorInput[] | Prisma.NotificationsUncheckedCreateWithoutAuthorInput[]
   connectOrCreate?: Prisma.NotificationsCreateOrConnectWithoutAuthorInput | Prisma.NotificationsCreateOrConnectWithoutAuthorInput[]
@@ -448,14 +472,6 @@ export type NotificationsUncheckedUpdateManyWithoutAuthorNestedInput = {
   update?: Prisma.NotificationsUpdateWithWhereUniqueWithoutAuthorInput | Prisma.NotificationsUpdateWithWhereUniqueWithoutAuthorInput[]
   updateMany?: Prisma.NotificationsUpdateManyWithWhereWithoutAuthorInput | Prisma.NotificationsUpdateManyWithWhereWithoutAuthorInput[]
   deleteMany?: Prisma.NotificationsScalarWhereInput | Prisma.NotificationsScalarWhereInput[]
-}
-
-export type NullableIntFieldUpdateOperationsInput = {
-  set?: number | null
-  increment?: number
-  decrement?: number
-  multiply?: number
-  divide?: number
 }
 
 export type NotificationsCreateWithoutAuthorInput = {
@@ -608,7 +624,7 @@ export type NotificationsIncludeUpdateManyAndReturn<ExtArgs extends runtime.Type
 export type $NotificationsPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Notifications"
   objects: {
-    author: Prisma.$UserPayload<ExtArgs> | null
+    author: Prisma.$UsersPayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
@@ -1012,7 +1028,7 @@ readonly fields: NotificationsFieldRefs;
  */
 export interface Prisma__NotificationsClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  author<T extends Prisma.Notifications$authorArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Notifications$authorArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  author<T extends Prisma.Notifications$authorArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Notifications$authorArgs<ExtArgs>>): Prisma.Prisma__UsersClient<runtime.Types.Result.GetResult<Prisma.$UsersPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1454,18 +1470,18 @@ export type NotificationsDeleteManyArgs<ExtArgs extends runtime.Types.Extensions
  */
 export type Notifications$authorArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the User
+   * Select specific fields to fetch from the Users
    */
-  select?: Prisma.UserSelect<ExtArgs> | null
+  select?: Prisma.UsersSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the User
+   * Omit specific fields from the Users
    */
-  omit?: Prisma.UserOmit<ExtArgs> | null
+  omit?: Prisma.UsersOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.UserInclude<ExtArgs> | null
-  where?: Prisma.UserWhereInput
+  include?: Prisma.UsersInclude<ExtArgs> | null
+  where?: Prisma.UsersWhereInput
 }
 
 /**
